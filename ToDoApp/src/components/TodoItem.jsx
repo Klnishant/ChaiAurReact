@@ -3,7 +3,7 @@ import useTodo from "../context/ToDoContexts";
 
 function TodoItem({ todo }) {
     const [isTodoEditable,setIsTodoEditable] = useState(false);
-    const [Todo,setTodoMsg] = useState(todo.todo);
+    const [todoMsg,setTodoMsg] = useState(todo.todo);
     const {updateTodo,deleteTodo,toggleComplete} = useTodo();
 
     const editTodo = ()=>{
@@ -42,9 +42,7 @@ function TodoItem({ todo }) {
                 onClick={() => {
                     if (todo.completed) return;
 
-                    if (isTodoEditable) {
-                        editTodo();
-                    } else setIsTodoEditable((prev) => !prev);
+                    isTodoEditable ? editTodo() : setIsTodoEditable((prev)=> !prev)
                 }}
                 disabled={todo.completed}
             >
