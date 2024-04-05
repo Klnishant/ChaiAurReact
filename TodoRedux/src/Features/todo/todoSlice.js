@@ -18,7 +18,15 @@ const todoSlice = createSlice({
             state.todos.push(todo);
         },
         updateTodo: (state,action)=>{
-            state.todos.map((todo)=>(todo.id,{...todo,msg:action.payload}));
+            const {id,msg} = action.payload;
+            console.log(id);
+            console.log(msg);
+            const todo = state.todos.map((todo)=>(todo.id));
+            console.log(todo);
+
+            if (todo) {
+                todo.msg = msg;
+            }
         },
         toggleComplete: (state,action)=>{
             const todo = state.todos.find(todo=>todo.id==action.payload);
